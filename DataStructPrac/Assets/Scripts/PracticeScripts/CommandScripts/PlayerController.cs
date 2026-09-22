@@ -28,6 +28,16 @@ public class PlayerController : MonoBehaviour
         {
             MovePlayer(new Vector3(0f, _selectedPlayer.transform.position.y, -2f));
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            MovePlayer(new Vector3(2f,  _selectedPlayer.transform.position.y, 0f));
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            MovePlayer(new Vector3(-2f, _selectedPlayer.transform.position.y, 0f));
+        }
         
         
         else if (Input.GetKeyDown(KeyCode.Alpha2))
