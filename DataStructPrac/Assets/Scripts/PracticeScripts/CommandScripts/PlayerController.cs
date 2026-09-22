@@ -8,22 +8,32 @@ public class PlayerController : MonoBehaviour
     // 되돌리기 누르면 CommandManager의 되돌리기 -> POP 이후 되돌리기 실행
     [SerializeField] private Player _selectedPlayer;
     [SerializeField] private CommandManager _commandManager;
-    public PlayerMovement playerMovement;
+
+    private PlayerMovement _playerMove;
+
+    private void Awake()
+    {
+        CacheComponents();
+    }
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            MovePlayer(new Vector3(2f, _selectedPlayer.transform.position.y, 0f));
+            MovePlayer(new Vector3(0f, _selectedPlayer.transform.position.y, 2f));
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        
+        
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            MovePlayer(new Vector3(0f, _selectedPlayer.transform.position.y, -2f));
+        }
+        
+        
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _commandManager.Undo();
         }
-    }
-    public void CacheComponents()
-    {
-       playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void MovePlayer(Vector3 targetPosition)
@@ -33,6 +43,9 @@ public class PlayerController : MonoBehaviour
         _commandManager.ExecuteCommand(commandable);
     }
 
-
+    private void CacheComponents()
+    {
+        _playerMove = GetComponent<PlayerMovement>();
+    }
     
 }
