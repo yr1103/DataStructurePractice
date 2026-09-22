@@ -1,27 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Input;
 using UnityEngine;
 
 public class CommandManager : MonoBehaviour
 {
-    private Stack<ICommandable> moveStack = new Stack<ICommandable>();
+    // 명령 스택에 담기
+    private Stack<ICommand> moveStack = new Stack<ICommand>();
     
-    public void ExecuteCommand(ICommandable commandable)
+    // 명령 실행
+    public void ExecuteCommand(ICommand commandable)
     {
         commandable.Execute();
         moveStack.Push(commandable);
     }
-
+    
+    // 되돌리기
     public void Undo()
     {
-        if (moveStack.Count == 0)
+        // 스택이 비어있으면
+        if (moveStack.Count <= 0)
         {
             Debug.Log("Nothing to undo");
             return;
         }
      
-        ICommandable commandable = moveStack.Pop();
+        ICommand commandable = moveStack.Pop();
         commandable.Undo();
     }
-
 }

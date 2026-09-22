@@ -4,7 +4,7 @@ using System.Windows.Input;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, ICommandable
+public class PlayerMovement : MonoBehaviour, ICommand
 {
     private Player _player;
     private Vector3 _prevPosition;
